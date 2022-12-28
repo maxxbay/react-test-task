@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import ItemApi from './ItemApi';
 import List from './List';
-// import withListLoading from './withListLoading';
-// import { v4 as uuidv4 } from 'uuid';
 
 function Api() {
-  // const ListLoading = withListLoading(List);
   const [appState, setAppState] = useState({
     HTTPS: false,
     entries: null,
@@ -16,7 +13,6 @@ function Api() {
     Link: '',
   });
 
-  // const [entries, setEntries] = useState([]);
   useEffect(() => {
     setAppState({ HTTPS: true });
     const apiUrl = `https://api.publicapis.org/entries`;
@@ -33,16 +29,8 @@ function Api() {
       });
   }, [setAppState]);
 
-  // useEffect(() => {
-  //   setAppState({
-  //     ...appState,
-  //     selectedCategory: appState.categories[0],
-  //   });
-  // }, [appState, appState.categories]);
-
   const getCategories = entries => {
     const categories = entries.map(entrie => entrie.Category);
-    // console.log(categories);
     return categories.filter((cat, idx, arr) => arr.indexOf(cat) === idx);
   };
 
@@ -52,12 +40,8 @@ function Api() {
       entries: appState.entries.filter(el => el.Link !== entrie.Link),
     });
   };
-  // console.log(appState.categories);
 
   const getFilteredEntries = (entries, cat, cors) => {
-    // if (cat === '' && cors === '') {
-    //   return entries;
-    // }
     const a = entries?.filter(
       entry =>
         (!cat ? true : cat === entry.Category) &&
@@ -73,8 +57,6 @@ function Api() {
       selectedCategory: e.target.value,
     });
   };
-  // console.log(appState);
-  // console.log(getFilteredEntries(appState?.entries, appState.selectedCategory));
 
   const onCorsChange = e => {
     setAppState({
@@ -101,7 +83,6 @@ function Api() {
         </select>
         <ItemApi onChange={onCorsChange} />
 
-        {/* <ListLoading isLoading={appState.HTTPS} entries={appState.entries} /> */}
         <List
           entries={getFilteredEntries(
             appState.entries,
