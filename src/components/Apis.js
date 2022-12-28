@@ -69,10 +69,9 @@ function Api() {
       <div className="container">
         <h1>API's</h1>
       </div>
-
-      <div className="list-container">
-        <label htmlFor="categories">Choose a car:</label>
-
+      <div className="category-container">
+        {' '}
+        <label htmlFor="categories">Choose a category:</label>
         <select name="categories" id="categories" onChange={handleChange}>
           <option value={''}>{`=all=`}</option>
           {appState.categories?.map(cat => (
@@ -82,7 +81,8 @@ function Api() {
           ))}
         </select>
         <ItemApi onChange={onCorsChange} />
-
+      </div>
+      <div className="list-container">
         <List
           entries={getFilteredEntries(
             appState.entries,
