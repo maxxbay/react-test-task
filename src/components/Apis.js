@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import List from './List';
-import withListLoading from './withListLoading';
+// import withListLoading from './withListLoading';
 // import { v4 as uuidv4 } from 'uuid';
 
 function Api() {
-  const ListLoading = withListLoading(List);
+  // const ListLoading = withListLoading(List);
   const [appState, setAppState] = useState({
     HTTPS: false,
     entries: null,
@@ -25,8 +25,10 @@ function Api() {
       });
   }, [setAppState]);
 
-  const deleteApi = entries => {
-    setAppState(entries.filter(Link => appState.Link !== Link));
+  const deleteApi = Link => {
+    setAppState({
+      entries: appState.entries.filter(entries => entries.Link !== Link),
+    });
   };
 
   return (
@@ -35,7 +37,7 @@ function Api() {
         <h1>API's</h1>
       </div>
       <div className="list-container">
-        <ListLoading isLoading={appState.HTTPS} entries={appState.entries} />
+        {/* <ListLoading isLoading={appState.HTTPS} entries={appState.entries} /> */}
         <List entries={appState.entries} delete={deleteApi} />
       </div>
       <footer>
