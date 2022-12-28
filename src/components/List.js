@@ -2,10 +2,10 @@ import './App.css';
 import React, { Fragment } from 'react';
 
 const List = props => {
-  const { entries } = props;
+  const { entries, deleteApi } = props;
+  console.log(entries);
 
   if (!entries || entries.length === 0) return <p>No api's, sorry</p>;
-
   return (
     <ul>
       <h2 className="list-head">Available Api's</h2>
@@ -18,7 +18,7 @@ const List = props => {
               <button
                 className="list-button"
                 onClick={() => {
-                  props.delete(entrie);
+                  deleteApi(entrie);
                 }}
               >
                 Delete api
