@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 
 const List = props => {
   const { entries, deleteApi, showApi } = props;
