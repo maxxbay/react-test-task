@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import ItemApi from './ItemApi';
+import ItemInformation from './ItemInformation';
 import List from './List';
 
 function Api() {
@@ -11,6 +12,7 @@ function Api() {
     selectedCategory: '',
     selectedCors: '',
     Link: '',
+    currentEntry: null,
   });
 
   useEffect(() => {
@@ -47,7 +49,6 @@ function Api() {
         (!cat ? true : cat === entry.Category) &&
         (!cors ? true : cors === entry.Cors)
     );
-    console.log(a);
     return a;
   };
 
@@ -64,6 +65,14 @@ function Api() {
       selectedCors: e.target.value,
     });
   };
+
+  const showApi = entrie => {
+    setAppState({
+      ...appState,
+      currentEntry: entrie,
+    });
+  };
+
   return (
     <div className="App">
       <div className="container">
@@ -82,16 +91,25 @@ function Api() {
         </select>
         <ItemApi onChange={onCorsChange} />
       </div>
-      <div className="list-container">
-        <List
-          entries={getFilteredEntries(
-            appState.entries,
-            appState.selectedCategory,
-            appState.selectedCors
+      <div className="wrapper">
+        <div className="list-container">
+          <List
+            entries={getFilteredEntries(
+              appState.entries,
+              appState.selectedCategory,
+              appState.selectedCors
+            )}
+            deleteApi={deleteApi}
+            showApi={showApi}
+          />
+        </div>
+        <div className="item">
+          {appState.currentEntry && (
+            <ItemInformation entrie={appState.currentEntry} />
           )}
-          deleteApi={deleteApi}
-        />
+        </div>
       </div>
+
       <footer>
         <div className="footer">Built by Maksym Bay</div>
       </footer>
