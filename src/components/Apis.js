@@ -29,7 +29,6 @@ function Api() {
           HTTPS: true,
           entries: data.entries,
           categories,
-          selectedCategory: '',
         });
       });
   }, [setAppState]);
@@ -86,7 +85,6 @@ function Api() {
       currentEntry: entrie,
     });
   };
-
   const onTextChange = e => {
     console.log('Fucking shit');
     setAppState({
@@ -94,8 +92,11 @@ function Api() {
       selectedText: e.target.value,
     });
   };
-  const getFilteredText = (entries, text) => {
-    const a = entries?.filter(entry => (!text ? true : text === entry.API));
+  const getFilteredText = entries => {
+    const a = entries?.filter(entry =>
+      entry.API.includes(entry.API.toLowerCase())
+    );
+    console.log(a);
     return a;
   };
 
