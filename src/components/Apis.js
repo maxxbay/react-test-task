@@ -85,20 +85,6 @@ function Api() {
       currentEntry: entrie,
     });
   };
-  const onTextChange = e => {
-    console.log('Fucking shit');
-    setAppState({
-      ...appState,
-      selectedText: e.target.value,
-    });
-  };
-  const getFilteredText = entries => {
-    const a = entries?.filter(entry =>
-      entry.API.includes(entry.API.toLowerCase())
-    );
-    console.log(a);
-    return a;
-  };
 
   return (
     <div className="App">
@@ -117,11 +103,6 @@ function Api() {
           ))}
         </select>
         <ItemApi onChange={onCorsChange} />
-        <Filter
-          entries={getFilteredText(appState.entries, appState.selectedText)}
-          onTextChange={onTextChange}
-          // entries={getFilteredText(appState.selectedText)}
-        />
       </div>
 
       <div className="wrapper">
@@ -136,6 +117,8 @@ function Api() {
             showApi={showApi}
           />
         </div>
+        <Filter />
+
         <div className="item">
           {appState.currentEntry && (
             <ItemInformation entrie={appState.currentEntry} />
