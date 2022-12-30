@@ -31,7 +31,7 @@ const Filter = () => {
       <div className="filters">
         <input
           type="search"
-          placeholder="Search API ..."
+          placeholder="Search API by title..."
           value={filters.title || ''}
           onChange={handleSearch}
         />
@@ -46,8 +46,8 @@ const Filter = () => {
           <ul>
             {data.entries.map(element => (
               <li key={element.API + element.Link}>
-                <p>{element.API}</p>
-                <p>{element.Description}</p>
+                <p>Title: {element.API}</p>
+                <p>Description: {element.Description}</p>
                 <a href={element.Link} target="_blank" rel="noreferrer">
                   {element.Link}
                 </a>
