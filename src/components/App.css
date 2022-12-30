@@ -129,8 +129,12 @@ ul {
 }
 
 li {
-  padding: 20px;
-  border: 1px solid #999;
+  list-style: circle;
+ 
+  margin: 15px;
+  padding: 5px;;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: #a9e2c4;
 }
 
 .filters {
