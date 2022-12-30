@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Filter from './Filter';
 import ItemApi from './ItemApi';
 import ItemInformation from './ItemInformation';
 import List from './List';
@@ -13,7 +14,9 @@ function Api() {
     selectedCors: '',
     Link: '',
     currentEntry: null,
+    selectedText: '',
   });
+  // const [searchString, setSearchString] = useState('');
 
   useEffect(() => {
     setAppState({ HTTPS: true });
@@ -66,6 +69,23 @@ function Api() {
     });
   };
 
+  const onTextChange = e => {
+    setAppState({
+      ...appState,
+      selectedText: e.target.value,
+    });
+  };
+  // const onTextChange = e => {
+  //   setAppState({
+  //     ...appState,
+  //     selectedText: e.target.value,
+  //   });
+  // };
+  // const getFilteredText = (entries, API) => {
+  //   const a = entries?.filter(entry => (!API ? true : API === entry.API));
+  //   return a;
+  // };
+
   const showApi = entrie => {
     setAppState({
       ...appState,
@@ -90,7 +110,12 @@ function Api() {
           ))}
         </select>
         <ItemApi onChange={onCorsChange} />
+        <Filter
+          onChange={onTextChange}
+          // entries={getFilteredText(appState.selectedText)}
+        />
       </div>
+
       <div className="wrapper">
         <div className="list-container">
           <List
