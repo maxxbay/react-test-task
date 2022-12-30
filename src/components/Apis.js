@@ -69,12 +69,6 @@ function Api() {
     });
   };
 
-  const onTextChange = e => {
-    setAppState({
-      ...appState,
-      selectedText: e.target.value,
-    });
-  };
   // const onTextChange = e => {
   //   setAppState({
   //     ...appState,
@@ -91,6 +85,18 @@ function Api() {
       ...appState,
       currentEntry: entrie,
     });
+  };
+
+  const onTextChange = e => {
+    console.log('Fucking shit');
+    setAppState({
+      ...appState,
+      selectedText: e.target.value,
+    });
+  };
+  const getFilteredText = (entries, text) => {
+    const a = entries?.filter(entry => (!text ? true : text === entry.API));
+    return a;
   };
 
   return (
@@ -111,7 +117,8 @@ function Api() {
         </select>
         <ItemApi onChange={onCorsChange} />
         <Filter
-          onChange={onTextChange}
+          entries={getFilteredText(appState.entries, appState.selectedText)}
+          onTextChange={onTextChange}
           // entries={getFilteredText(appState.selectedText)}
         />
       </div>

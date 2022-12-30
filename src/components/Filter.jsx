@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
-const Filter = (appState, entries, onTextChange) => {
+const Filter = props => {
+  const { onTextChange } = props;
   return (
     <Fragment>
       <label>
